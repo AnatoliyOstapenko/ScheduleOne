@@ -23,6 +23,7 @@ class ScheduleTableViewController: UITableViewController {
 
     // MARK: - TableView Data Source
 
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return array.count
@@ -36,6 +37,7 @@ class ScheduleTableViewController: UITableViewController {
         let item = array[indexPath.row]
 
         cell.textLabel?.text = item.city
+        
 
         return cell
     }
@@ -44,11 +46,22 @@ class ScheduleTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        guard let item = tableView.cellForRow(at: indexPath) else { return }
+        //guard let item = tableView.cellForRow(at: indexPath) else { return }
         
-        guard let text = item.textLabel?.text else { return }
+        let item = array[indexPath.row]
         
-        print(text)
+        let alert = UIAlertController(title: "Realy want to delete?", message: "", preferredStyle: .alert)
+        
+        let deleteButton = UIAlertAction(title: "delete", style: .destructive) { (action) in
+            self.deleteData(item)
+        }
+        
+        let cancelButton = UIAlertAction(title: "cancel", style: .cancel, handler: nil)
+        
+        alert.addAction(deleteButton)
+        alert.addAction(cancelButton)
+        
+        present(alert, animated: true, completion: nil)
         
        
     }
@@ -108,7 +121,13 @@ class ScheduleTableViewController: UITableViewController {
         do {
             array = try context.fetch(ItemCoreData.fetchRequest())
         } catch { print("loading error \(error)")}
+ 
+    }
+    
+    func deleteData(_ item: ItemCoreData) {
         
+        context.delete(item)
+        saveData()
         
     }
    
