@@ -48,14 +48,19 @@ class ScheduleTableViewController: UITableViewController {
         
         let item = array[indexPath.row]
         
-        let alert = UIAlertController(title: item.city, message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let deleteButton = UIAlertAction(title: "delete", style: .destructive) { (action) in
+        let detailedButton = UIAlertAction(title: "show weather", style: .default) { (action) in
+            self.deleteData(item)
+        }
+        
+        let deleteButton = UIAlertAction(title: "delete city", style: .destructive) { (action) in
             self.deleteData(item)
         }
         
         let cancelButton = UIAlertAction(title: "cancel", style: .cancel, handler: nil)
         
+        alert.addAction(detailedButton)
         alert.addAction(deleteButton)
         alert.addAction(cancelButton)
         
@@ -69,13 +74,13 @@ class ScheduleTableViewController: UITableViewController {
         
         var textField = UITextField()
         
-        let alert = UIAlertController(title: "New Item", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "New City", message: "", preferredStyle: .alert)
         
         // text field
         
         alert.addTextField { (alertTextField) in
             
-            alertTextField.placeholder = "type here"
+            alertTextField.placeholder = "type city name"
             textField = alertTextField
         }
         
