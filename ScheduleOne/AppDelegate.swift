@@ -8,6 +8,8 @@
 import UIKit
 import CoreData
 
+// go to xcdatamodel file and change Class-Module to Current Product Module
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
