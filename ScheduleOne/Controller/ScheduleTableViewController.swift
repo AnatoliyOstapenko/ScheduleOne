@@ -46,11 +46,9 @@ class ScheduleTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        //guard let item = tableView.cellForRow(at: indexPath) else { return }
-        
         let item = array[indexPath.row]
         
-        let alert = UIAlertController(title: "Realy want to delete?", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: item.city, message: "", preferredStyle: .alert)
         
         let deleteButton = UIAlertAction(title: "delete", style: .destructive) { (action) in
             self.deleteData(item)
