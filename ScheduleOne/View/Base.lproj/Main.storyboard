@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,10 +39,55 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="0RF-03-CDj" kind="show" identifier="goToWeatherVC" id="Aje-ne-SOd"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TDd-3s-iyx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="884" y="151"/>
+        </scene>
+        <!--wether-->
+        <scene sceneID="Tla-Pe-Bxt">
+            <objects>
+                <viewController id="0RF-03-CDj" customClass="WeatherViewController" customModule="ScheduleOne" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PQE-ah-mW7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="graduationcap.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Ht6-TN-reS">
+                                <rect key="frame" x="107" y="348.5" width="200" height="202.5"/>
+                                <color key="tintColor" red="0.32807830970000001" green="0.78823529410000004" blue="0.81176470590000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="Nn9-Vv-0ML"/>
+                                    <constraint firstAttribute="width" constant="200" id="mrL-Sv-jD9"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="city name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JY3-Mk-QwC">
+                                <rect key="frame" x="0.0" y="118" width="414" height="60"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="XBs-Mb-WFC"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="JY3-Mk-QwC" firstAttribute="leading" secondItem="XBs-Mb-WFC" secondAttribute="leading" id="77L-jS-ugN"/>
+                            <constraint firstItem="Ht6-TN-reS" firstAttribute="centerX" secondItem="PQE-ah-mW7" secondAttribute="centerX" id="Ya7-8o-qXz"/>
+                            <constraint firstItem="JY3-Mk-QwC" firstAttribute="top" secondItem="XBs-Mb-WFC" secondAttribute="top" constant="30" id="bBg-fC-pWB"/>
+                            <constraint firstItem="XBs-Mb-WFC" firstAttribute="trailing" secondItem="JY3-Mk-QwC" secondAttribute="trailing" id="dmT-J1-Qe9"/>
+                            <constraint firstItem="Ht6-TN-reS" firstAttribute="centerY" secondItem="PQE-ah-mW7" secondAttribute="centerY" id="f4h-my-G0f"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="wether" id="Qtz-Ig-Kyd"/>
+                    <connections>
+                        <outlet property="cityLabel" destination="JY3-Mk-QwC" id="vWC-E1-x2F"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0my-ON-lAu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1645" y="151"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2lp-dP-pcX">
@@ -67,6 +113,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="graduationcap.fill" catalog="system" width="128" height="108"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -18,6 +18,8 @@ class ScheduleTableViewController: UITableViewController {
         super.viewDidLoad()
         
        loadData()
+        
+    
 
     }
 
@@ -48,10 +50,13 @@ class ScheduleTableViewController: UITableViewController {
         
         let item = array[indexPath.row]
         
+        
+        
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let detailedButton = UIAlertAction(title: "show weather", style: .default) { (action) in
-            self.deleteData(item)
+            
+            self.performSegue(withIdentifier: "goToWeatherVC", sender: self)
         }
         
         let deleteButton = UIAlertAction(title: "delete city", style: .destructive) { (action) in
@@ -68,6 +73,23 @@ class ScheduleTableViewController: UITableViewController {
         
        
     }
+    // MARK: - Prepare Segue
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "goToWeatherVC" {
+            let destination = segue.destination as! WeatherViewController
+            
+            func getTextLabel(_ textLabel: ItemCoreData) {
+                guard let text: String = textLabel.city else { return }
+                destination.textLabel = text
+            }
+            
+        }
+  
+    }
+    
     // MARK: - Add New Item
     
     @IBAction func addBarButton(_ sender: UIBarButtonItem) {
