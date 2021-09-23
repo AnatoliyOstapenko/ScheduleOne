@@ -12,14 +12,16 @@ class ScheduleTableViewController: UITableViewController {
     
     var array = [ItemCoreData]()
     
+    var textField = UITextField()
+    
+    var currentItem: String?
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
        loadData()
-        
-    
 
     }
 
@@ -56,6 +58,9 @@ class ScheduleTableViewController: UITableViewController {
         
         let detailedButton = UIAlertAction(title: "show weather", style: .default) { (action) in
             
+            guard let text = item.city else { return }
+            self.currentItem = text
+            
             self.performSegue(withIdentifier: "goToWeatherVC", sender: self)
         }
         
@@ -78,13 +83,14 @@ class ScheduleTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        
+        
         if segue.identifier == "goToWeatherVC" {
-            let destination = segue.destination as! WeatherViewController
             
-            func getTextLabel(_ textLabel: ItemCoreData) {
-                guard let text: String = textLabel.city else { return }
-                destination.textLabel = text
-            }
+            let destination = segue.destination as! WeatherViewController
+    
+            destination.textLabel = currentItem
+            
             
         }
   
@@ -94,7 +100,7 @@ class ScheduleTableViewController: UITableViewController {
     
     @IBAction func addBarButton(_ sender: UIBarButtonItem) {
         
-        var textField = UITextField()
+       
         
         let alert = UIAlertController(title: "New City", message: "", preferredStyle: .alert)
         
@@ -103,14 +109,14 @@ class ScheduleTableViewController: UITableViewController {
         alert.addTextField { (alertTextField) in
             
             alertTextField.placeholder = "type city name"
-            textField = alertTextField
+            self.textField = alertTextField
         }
         
         // add buttons
         
         let addButton = UIAlertAction(title: "add", style: .default) { (action) in
             
-            guard let text = textField.text else { return }
+            guard let text = self.textField.text else { return }
             
             let item = ItemCoreData(context: self.context)
             
