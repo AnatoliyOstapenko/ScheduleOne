@@ -12,10 +12,13 @@ class WeatherViewController: UIViewController {
     var textLabel: String?
 
     
+    @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.tintColor = .white
 
         cityLabel.text = textLabel
     }

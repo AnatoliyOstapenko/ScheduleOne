@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--schedule-->
+        <!--city-->
         <scene sceneID="Jvy-xI-mNZ">
             <objects>
                 <tableViewController id="xA9-vQ-A8l" customClass="ScheduleTableViewController" customModule="ScheduleOne" customModuleProvider="target" sceneMemberID="viewController">
@@ -31,7 +31,7 @@
                             <outlet property="delegate" destination="xA9-vQ-A8l" id="0Fg-xa-8hZ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="schedule" id="rK6-Ys-Xan">
+                    <navigationItem key="navigationItem" title="city" id="rK6-Ys-Xan">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="TfC-rw-AVk">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -55,8 +55,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="graduationcap.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Ht6-TN-reS">
-                                <rect key="frame" x="107" y="348.5" width="200" height="202.5"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="cloud.sun" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Ht6-TN-reS">
+                                <rect key="frame" x="107" y="346.5" width="202.5" height="199"/>
                                 <color key="tintColor" red="0.32807830970000001" green="0.78823529410000004" blue="0.81176470590000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="Nn9-Vv-0ML"/>
@@ -69,6 +69,26 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="JLA-aZ-CP4">
+                                <rect key="frame" x="0.0" y="578" width="414" height="80"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wiO-qC-VRs">
+                                        <rect key="frame" x="0.0" y="0.0" width="207" height="80"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="°C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rTi-dn-F3C">
+                                        <rect key="frame" x="207" y="0.0" width="207" height="80"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="qmz-Q9-KKV"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XBs-Mb-WFC"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -78,11 +98,15 @@
                             <constraint firstItem="JY3-Mk-QwC" firstAttribute="top" secondItem="XBs-Mb-WFC" secondAttribute="top" constant="30" id="bBg-fC-pWB"/>
                             <constraint firstItem="XBs-Mb-WFC" firstAttribute="trailing" secondItem="JY3-Mk-QwC" secondAttribute="trailing" id="dmT-J1-Qe9"/>
                             <constraint firstItem="Ht6-TN-reS" firstAttribute="centerY" secondItem="PQE-ah-mW7" secondAttribute="centerY" id="f4h-my-G0f"/>
+                            <constraint firstItem="JLA-aZ-CP4" firstAttribute="top" secondItem="Ht6-TN-reS" secondAttribute="bottom" constant="30" id="jwE-DW-fln"/>
+                            <constraint firstItem="JLA-aZ-CP4" firstAttribute="leading" secondItem="XBs-Mb-WFC" secondAttribute="leading" id="lLv-TE-wEc"/>
+                            <constraint firstItem="XBs-Mb-WFC" firstAttribute="trailing" secondItem="JLA-aZ-CP4" secondAttribute="trailing" id="xwI-f4-2Dr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="wether" id="Qtz-Ig-Kyd"/>
                     <connections>
                         <outlet property="cityLabel" destination="JY3-Mk-QwC" id="vWC-E1-x2F"/>
+                        <outlet property="tempLabel" destination="wiO-qC-VRs" id="0Zn-8s-Par"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0my-ON-lAu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -113,7 +137,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="graduationcap.fill" catalog="system" width="128" height="108"/>
+        <image name="cloud.sun" catalog="system" width="128" height="93"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
