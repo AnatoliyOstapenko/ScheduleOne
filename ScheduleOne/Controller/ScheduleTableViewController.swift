@@ -16,12 +16,20 @@ class ScheduleTableViewController: UITableViewController {
     
     var currentItem: String?
     
+    var weatherManager = WeatherManager()
+    
+    var temperature: String?
+
+    var tempIcon: String?
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       loadData()
+        loadData()
+        
+        weatherManager.weatherDelegate = self
 
     }
 
@@ -51,15 +59,14 @@ class ScheduleTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let item = array[indexPath.row]
-        
-        
+        // dispatch name of city to other VC
+        guard let text = item.city else { return }
+        currentItem = text
+        weatherManager.getCityName(text)
         
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let detailedButton = UIAlertAction(title: "show weather", style: .default) { (action) in
-            
-            guard let text = item.city else { return }
-            self.currentItem = text
             
             self.performSegue(withIdentifier: "goToWeatherVC", sender: self)
         }
@@ -82,15 +89,15 @@ class ScheduleTableViewController: UITableViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        
+
         
         if segue.identifier == "goToWeatherVC" {
             
             let destination = segue.destination as! WeatherViewController
     
             destination.textLabel = currentItem
-            
+            destination.temp = temperature
+            destination.pic = tempIcon
             
         }
   
@@ -161,7 +168,18 @@ class ScheduleTableViewController: UITableViewController {
         saveData()
         
     }
-   
+
+}
+
+// MARK: - Weather Delegate
+
+extension ScheduleTableViewController: WeatherDelegate {
+    func getData(_ temp: Float, _ icon: String) {
+        temperature = String(format: "%.0f", temp)
+        tempIcon = icon
+    }
+    
+    
     
     
 }

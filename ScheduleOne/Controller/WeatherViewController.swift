@@ -10,28 +10,45 @@ import UIKit
 class WeatherViewController: UIViewController {
     
     var textLabel: String?
+    var temp: String?
+    var pic: String?
 
     
+
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var iconWeatherView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         self.navigationController?.navigationBar.tintColor = .white
 
         cityLabel.text = textLabel
+        tempLabel.text = temp
+        getIcon()
+        
+
+    
     }
     
+    // converting icon url to UIImage
+    func getIcon() {
+        
+        guard let url = URL(string: "https://openweathermap.org/img/wn/\(pic!)@2x.png") else { return }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        DispatchQueue.global().async {
+            if let data = try? Data(contentsOf: url) {
+                DispatchQueue.main.async {
+                    self.iconWeatherView.image = UIImage(data: data)
+                }
+                
+                    
+            }
+        }
     }
-    */
-
+    
 }
+
+
+

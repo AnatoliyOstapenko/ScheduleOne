@@ -106,6 +106,7 @@
                     <navigationItem key="navigationItem" title="wether" id="Qtz-Ig-Kyd"/>
                     <connections>
                         <outlet property="cityLabel" destination="JY3-Mk-QwC" id="vWC-E1-x2F"/>
+                        <outlet property="iconWeatherView" destination="Ht6-TN-reS" id="d3S-aW-WcF"/>
                         <outlet property="tempLabel" destination="wiO-qC-VRs" id="0Zn-8s-Par"/>
                     </connections>
                 </viewController>
