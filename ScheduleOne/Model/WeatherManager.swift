@@ -54,9 +54,6 @@ struct WeatherManager {
             let temp = decodedData.main.temp
             let icon = decodedData.weather[0].icon
             
-            print("temp is \(temp)")
-            print("icon is \(icon)")
-            
             weatherDelegate?.getData(temp, icon)
             
         } catch { print("error in parsing JSON \(error)")}
